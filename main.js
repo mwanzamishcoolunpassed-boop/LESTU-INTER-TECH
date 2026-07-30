@@ -2,6 +2,7 @@ window.onload = function () {
     document.getElementById("mishcool").style.display = "none";  
 };  
   
+  const API = window.location.origin;
   
 function signup() {  
     document.getElementById("buttons").style.display = "none";  
@@ -26,8 +27,8 @@ function openSignIn() {
 function lectureslogin() {  
   
     const password = document.getElementById("lecturesPassword").value;  
-  
-    fetch("http://127.0.0.1:3000/lectures/login", {  
+  fetch(`${API}/lectures/login`, {
+    
   
         method: "POST",  
   
@@ -68,8 +69,7 @@ function studentsLogin() {
   
     const password = document.getElementById("studentsPassword").value;  
   
-    fetch("http://127.0.0.1:3000/students/login", {  
-  
+    fetch(`${API}/students/login`, {
         method: "POST",  
   
         headers: {  
@@ -121,8 +121,7 @@ function submit() {
     const course2 = document.getElementById("course2").value;  
     const course3 = document.getElementById("course3").value;  
   
-    fetch("http://127.0.0.1:3000/lectures/signup", {  
-  
+    fetch(`${API}/lectures/signup`, {
         method: "POST",  
   
         headers: {  
@@ -177,8 +176,7 @@ function regStu() {
     const course4 = document.getElementById("c4").value;  
     const course5 = document.getElementById("c5").value;  
   
-    fetch("http://127.0.0.1:3000/students/signup", {  
-  
+    fetch(`${API}/students/signup`, {
         method:"POST",  
   
         headers:{  
@@ -257,8 +255,7 @@ function enter() {
     const lastName = document.getElementById("last").value;  
     const password = document.getElementById("pass").value;  
   
-    fetch("http://127.0.0.1:3000/lectures/enter", {  
-  
+    fetch(`${API}/lectures/enter`, {
         method:"POST",  
   
         headers:{  
@@ -306,7 +303,7 @@ function awardMarks() {
   
     console.log(firstName, lastName);  
   
-    fetch(`http://127.0.0.1:3000/lectures/courses/${firstName}/${lastName}`)  
+    fetch(`${API}/lectures/courses/${firstName}/${lastName}`)
   
     .then(res => res.json())  
   
@@ -348,7 +345,7 @@ function awardMarks() {
 
 function openCourse(course) {  
   
-    fetch(`http://127.0.0.1:3000/course/${encodeURIComponent(course)}/students`)  
+    fetch(`${API}/course/${encodeURIComponent(course)}/students`) 
   
     .then(res => res.json())  
   
@@ -412,7 +409,7 @@ function ignitePortal() {
     const lastName = document.getElementById("portalLast").value;  
     const password = document.getElementById("portalPass").value;  
   
-    fetch("http://127.0.0.1:3000/students/portal-access", {  
+    fetch(`${API}/students/portal-access`, {
   
         method: "POST",  
   
@@ -525,8 +522,9 @@ function updateMarks(firstName, lastName, course, button) {
     const marks = Number(  
         card.querySelector(".boxinput").value  
     );  
-  
-    fetch("http://127.0.0.1:3000/students/updateMarks", {  
+    
+    fetch(`${API}/students/updateMarks`, {
+      'name': value,
   
         method: "POST",  
   
@@ -573,8 +571,7 @@ function updateMarks(firstName, lastName, course, button) {
 
 function loadStudentResults(firstName, lastName, course, card) {
 
-    fetch("http://127.0.0.1:3000/students/results", {
-
+    fetch(`${API}/students/results`, {
         method: "POST",
 
         headers: {
@@ -670,7 +667,7 @@ function annou() {
     const firstName = localStorage.getItem("lecturerFirstName");
     const lastName = localStorage.getItem("lecturerLastName");
 
-    fetch(`http://127.0.0.1:3000/lectures/courses/${firstName}/${lastName}`)
+    fetch(`${API}/lectures/courses/${firstName}/${lastName}`)
 
     .then(res => res.json())
 
@@ -729,9 +726,8 @@ function sendAnnouncement(course) {
         alert("Type an announcement first.");
         return;
     }
-
-    fetch("http://127.0.0.1:3000/lectures/announcement", {
-
+fetch(`${API}/lectures/announcement`, {
+    
         method: "POST",
 
         headers: {
@@ -770,7 +766,7 @@ function loadAnnouncements(course, card){
 
     console.log("Loading announcements for:", course);
 
-    fetch(`http://127.0.0.1:3000/students/announcements/${course}`)
+    fetch(`${API}/students/announcements/${course}`)
 
     .then(res => res.json())
 
