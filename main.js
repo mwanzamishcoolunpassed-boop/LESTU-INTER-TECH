@@ -2,7 +2,10 @@ window.onload = function () {
     document.getElementById("mishcool").style.display = "none";  
 };  
   
-  const API = window.location.origin;
+  const API =
+  location.protocol === "file:"
+    ? "http://127.0.0.1:3000"
+    : "https://wallace-corpus-snow-favourite.trycloudflare.com";
   
 function signup() {  
     document.getElementById("buttons").style.display = "none";  
