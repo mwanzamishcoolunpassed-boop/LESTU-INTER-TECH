@@ -529,7 +529,7 @@ function updateMarks(firstName, lastName, course, button) {
     );  
     
     fetch(`${API}/students/updateMarks`, {
-      'name': value,
+      
   
         method: "POST",  
   
