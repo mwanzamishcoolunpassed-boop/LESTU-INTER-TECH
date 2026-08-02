@@ -6,8 +6,7 @@ window.onload = function () {
 const API =
   location.protocol === "file:"
     ? "http://127.0.0.1:3000"
-    : "https://gap-notification-tracks-everyday.trycloudflare.com";
-  
+    : "https://lestu-inter-tech-backend.onrender.com";
   
   
 function signup() {  
